@@ -1,7 +1,12 @@
-const CategoriesRx = (state = [], action) => {
+
+import { ServiceCategories } from '../../WebServices/CategoriesService';
+
+const CategoriesRx = async (state = [], action) => {
   switch (action.type) {
     case 'GET_DATA_CATEGORIES':
-      return state;
+      const data = await ServiceCategories();
+
+      return [...state, ...data];
       break;
     default:
       return state;
