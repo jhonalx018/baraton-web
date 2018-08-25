@@ -21,11 +21,11 @@
       return (
         <div className="App">
           <TopBar />
+          <DraweNavigation />
         </div>
       );
     }
   }
-
 
   const mapStateToProps = state => ({
     categories: state.CategoriesRx,

@@ -1,0 +1,16 @@
+*{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 12px !important;
+}
+.material-icons{
+    font-size: 25px !important;
+    cursor: pointer;
+    padding: 10px;
+    transition: 0.7s;
+}
+
+.material-icons:active{
+    background: #9b9b9b36;
+    border-radius: 200px;
+    opacity: 0.3s;
+}

@@ -1,0 +1,19 @@
+.content-drawer{
+    display: inline-block;
+    width: 100%;
+    max-width: 330px;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    -webkit-box-shadow: 10px 0px 5px -6px rgba(222,219,222,1);
+    -moz-box-shadow: 10px 0px 5px -6px rgba(222,219,222,1);
+    box-shadow: 10px 0px 5px -6px rgba(222,219,222,1); 
+    background: white;
+    transition: 1s;
+}
+
+.icon-menu-drawer{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
