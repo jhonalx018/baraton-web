@@ -1,0 +1,49 @@
+h3.title-products {
+    text-align: right;
+    padding: 11px;
+    font-size: 18px !important;
+    border-bottom: 1px solid red;
+    font-weight: 500;
+}
+
+.content-external {
+    display: inline-block;
+    width: 23%;
+    padding: 10px;
+}
+
+.content-box {
+    width: 100%;
+    display: inline-block;
+    /* float: left; */
+    padding: 5px;
+    border: 1px solid #dd2c0033;
+    -webkit-box-shadow: 10px 0px 5px -6px rgba(222,219,222,1);
+    box-shadow: 10px 0px 5px -6px rgba(222,219,222,1);
+    background: white;
+    -webkit-transition: 1s;
+    -o-transition: 0.4s;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.content-box:hover {
+    background: #ff000069;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.title-box.element-table {
+    width: 50%;
+    float: left;
+    padding-top: 5px;
+}
+
+@media (max-width: 900px){
+    .content-external{
+        width: calc(100% - 25px);
+        margin: 0;
+    }
+}

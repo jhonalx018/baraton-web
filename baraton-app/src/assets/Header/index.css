@@ -3,4 +3,8 @@
 }
 .title-bar{
     color: white !important;
+    display: block;
+    text-align: right;
+    width: 100%;
+    font-size: 22px !important;
 }

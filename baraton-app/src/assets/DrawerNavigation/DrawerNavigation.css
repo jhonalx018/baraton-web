@@ -2,13 +2,15 @@
     display: inline-block;
     width: 100%;
     max-width: 330px;
-    position: absolute;
+    position: fixed;
     left: 0;
+    top: 8px;
     height: 100%;
     -webkit-box-shadow: 10px 0px 5px -6px rgba(222,219,222,1);
-    -moz-box-shadow: 10px 0px 5px -6px rgba(222,219,222,1);
-    box-shadow: 10px 0px 5px -6px rgba(222,219,222,1); 
+    box-shadow: 10px 0px 5px -6px rgba(222,219,222,1);
     background: white;
+    -webkit-transition: 1s;
+    -o-transition: 1s;
     transition: 1s;
 }
 

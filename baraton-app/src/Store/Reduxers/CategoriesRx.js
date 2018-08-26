@@ -1,4 +1,3 @@
-
 import { ServiceCategories } from '../../WebServices/CategoriesService';
 
 const CategoriesRx = async (state = [], action) => {
@@ -6,13 +5,15 @@ const CategoriesRx = async (state = [], action) => {
     case 'GET_DATA_CATEGORIES':
       const data = await ServiceCategories();
 
-      return [...state, ...data];
+      return [
+        ...state,
+        ...data,
+      ];
       break;
     default:
       return state;
       break;
   }
-}
-;
+};
 
 export { CategoriesRx };

@@ -16,7 +16,7 @@
 }
 
 .material-icons-active{
-    background: #9b9b9b36;
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 200px;
     opacity: 0.3s;
 }
