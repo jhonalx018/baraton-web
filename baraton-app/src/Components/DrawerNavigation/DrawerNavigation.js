@@ -13,6 +13,7 @@ class DraweNavigation extends Component {
     return (
       <div className="content-drawer" style={{ left: (this.state.open === true) ? '0px' : '-330px' }}>
         <i className="material-icons icon-menu-drawer" style={{ right: (this.state.open === true) ? '10px' : '-43px' }} onClick={() => { this.setState({ open: !this.state.open }); }}>menu</i>
+        <span className="title-drawer">Categorias</span>
       </div>
     );
   }

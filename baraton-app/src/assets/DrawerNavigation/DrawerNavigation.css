@@ -17,3 +17,10 @@
     right: 10px;
     top: 10px;
 }
+
+span.title-drawer {
+    display: block;
+    padding-top: 21px;
+    padding-left: 28px;
+    font-size: 20px !important;
+}
