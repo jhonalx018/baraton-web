@@ -1,41 +1,17 @@
+import React, { Component } from 'react';
+import { TopBar } from '../TopBar/TopBar';
+import DraweNavigation from '../DrawerNavigation/DrawerNavigation';
 
-  import React, { Component } from 'react';
-  import { connect } from 'react-redux';
-  import { TopBar } from '../TopBar/TopBar';
-  import { DraweNavigation } from '../DrawerNavigation/DrawerNavigation';
+class BodyApp extends Component {
 
-  class BodyApp extends Component {
-    
-  componentWillMount = () => {
-      this.props.getData();   
+  render() {
+    return (
+      <div className="App">
+        <TopBar />
+        <DraweNavigation />
+      </div>
+    );
   }
-    
+}
 
-  componentWillReceiveProps(nextProps) {
-    nextProps.categories.then(function(data) {
-        console.log(data)
-    });
-  }
-    
-    render() {
-      return (
-        <div className="App">
-          <TopBar />
-          <DraweNavigation />
-        </div>
-      );
-    }
-  }
-
-  const mapStateToProps = state => ({
-    categories: state.CategoriesRx,
-  });
-
-  const mapDispatchToProps = dispatch => ({
-    getData: async () => {
-      await dispatch({ type: 'GET_DATA_CATEGORIES' });
-    },
-  });
-
-
-  export default connect(mapStateToProps, mapDispatchToProps)(BodyApp);
+export default BodyApp;

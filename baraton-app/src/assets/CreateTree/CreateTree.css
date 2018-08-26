@@ -1,0 +1,42 @@
+.content-tree{    
+    padding-bottom: 30px;
+    height: 80%;
+    overflow: auto;
+}
+
+.check-custom {
+    position: relative;
+    top: -1px;
+}
+
+.subelements {
+    padding-left: 30px;
+    transition: 1s;
+}
+
+.item-tree {
+    transition: 1s;
+    cursor: pointer;
+    padding: 12px;
+}
+
+.item-tree:hover {
+    background: #ff000061;
+    border-radius: 2px;
+}
+
+.subelements-disable{
+    height: 0;
+    display: none;
+}
+
+.icon-deploy {
+    display: inline-block;
+    padding-right: 20px;
+    font-size: 17px !important;
+    position: relative;
+    top: 1px;
+    font-weight: bold;
+    color: #ff0101;
+    text-shadow: 1px 1px #7a0505;
+}
