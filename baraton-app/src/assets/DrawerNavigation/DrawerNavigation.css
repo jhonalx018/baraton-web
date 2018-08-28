@@ -6,8 +6,9 @@
     left: 0;
     top: 8px;
     height: 100%;
-    -webkit-box-shadow: 10px 0px 5px -6px rgba(222,219,222,1);
-    box-shadow: 10px 0px 5px -6px rgba(222,219,222,1);
+    -webkit-box-shadow: 10px 0px 25px -8px rgba(191,191,191,1);
+    -moz-box-shadow: 10px 0px 25px -8px rgba(191,191,191,1);
+    box-shadow: 10px 0px 25px -8px rgba(191,191,191,1);
     background: white;
     -webkit-transition: 1s;
     -o-transition: 1s;
@@ -25,4 +26,10 @@ span.title-drawer {
     padding-top: 21px;
     padding-left: 28px;
     font-size: 20px !important;
+    margin-bottom: 20px;
+}
+
+.item-tree > span {
+    width: 30px;
+    height: 30px;
 }

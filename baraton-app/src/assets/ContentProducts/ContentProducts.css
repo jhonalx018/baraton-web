@@ -41,6 +41,15 @@ h3.title-products {
     padding-top: 5px;
 }
 
+.products-quantity {
+    font-weight: bold;
+    text-align: right;
+    text-transform: uppercase;
+    padding-right: 10px;
+    font-size: 10px !important;
+    text-shadow: 1px 1px #cacaca;
+}
+
 @media (max-width: 900px){
     .content-external{
         width: calc(100% - 25px);

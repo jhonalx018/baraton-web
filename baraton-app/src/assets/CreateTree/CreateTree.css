@@ -17,7 +17,7 @@
 .item-tree {
     transition: 1s;
     cursor: pointer;
-    padding: 12px;
+    padding: 4px;
 }
 
 .item-tree:hover {
@@ -32,11 +32,12 @@
 
 .icon-deploy {
     display: inline-block;
-    padding-right: 20px;
-    font-size: 17px !important;
+    font-size: 12px !important;
     position: relative;
-    top: 1px;
     font-weight: bold;
-    color: #ff0101;
-    text-shadow: 1px 1px #7a0505;
+    color: #000000bd;
+    text-shadow: 1px 1px #adaaaa;
+    width: 15px;
+    text-align: center;
+    background: #ff000021;
 }

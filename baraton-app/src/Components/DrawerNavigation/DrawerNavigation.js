@@ -6,6 +6,8 @@ import '../../assets/DrawerNavigation/DrawerNavigation.css';
 class DraweNavigation extends Component {
   constructor() {
     super();
+    this.dataSelected = null;
+    this.itemsSelected = [];
     this.state = {
       open: true,
       categories: []
@@ -18,12 +20,20 @@ class DraweNavigation extends Component {
       .getData();
   }
 
+  filterCateforie = (data) => {
+    this
+      .props
+      .setDataFilterCategorie(data);
+  }
+
   componentWillReceiveProps(nextProps) {
     const context = this;
     nextProps
       .categories
       .then(function (data) {
-        context.setState({categories: data});
+        if (data.datosFiltrados === undefined) {
+          context.setState({categories: data});
+        }
       });
   }
 
@@ -51,7 +61,9 @@ class DraweNavigation extends Component {
           });
         }}>menu</i>
         <span className="title-drawer">Categorias</span>
-        <CreateTree dataTree={this.state.categories}></CreateTree>
+        <CreateTree
+          dataTree={this.state.categories}
+          handleFilter={this.filterCateforie}></CreateTree>
       </div>
     );
   }
@@ -61,7 +73,10 @@ const mapStateToProps = state => ({categories: state.CategoriesRx});
 
 const mapDispatchToProps = dispatch => ({
   getData: async() => {
-    await dispatch({type: 'GET_DATA_CATEGORIES'});
+    await dispatch({type: 'GET_DATA_CATEGORIES', payload: {}});
+  },
+  setDataFilterCategorie: (dataPayload = []) => {
+    dispatch({type: 'SET_ID_CATEGORIE_FILTER', payload: dataPayload})
   }
 });
 

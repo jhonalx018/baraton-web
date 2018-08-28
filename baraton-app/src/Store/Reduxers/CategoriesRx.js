@@ -10,6 +10,9 @@ const CategoriesRx = async (state = [], action) => {
         ...data,
       ];
       break;
+    case 'SET_ID_CATEGORIE_FILTER':
+      return { datosFiltrados: action.payload };
+      break;
     default:
       return state;
       break;

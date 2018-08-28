@@ -9,6 +9,9 @@ const ProductsRx = async (state = [], action) => {
         ...data,
       ];
       break;
+    case 'SET_FILTER_CATEGORIE':
+      return state;
+      break;
     default:
       return state;
       break;

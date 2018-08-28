@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TopBar } from '../TopBar/TopBar';
 import DraweNavigation from '../DrawerNavigation/DrawerNavigation';
-import ConenteProducts from '../ConenteProducts/ConenteProducts';
+import ContentProducts from '../ContentProducts/ContentProducts';
 
 class BodyApp extends Component {
 
@@ -10,7 +10,7 @@ class BodyApp extends Component {
       <div className="App">
         <TopBar />
         <DraweNavigation />
-        <ConenteProducts />
+        <ContentProducts />
       </div>
     );
   }

@@ -3,39 +3,77 @@ import '../../assets/CreateTree/CreateTree.css';
 import Checkbox from '@material-ui/core/Checkbox';
 
 class CreateTree extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+    this.checkboxChildActives = {};
     this.state = {
-      data: this.props.dataTree,
+      data: [],
       itemsList: [],
       elements: {},
-      isLoaded: false
+      isLoaded: false,
+      checkboxes: {}
     };
   }
 
   componentWillReceiveProps(nextProps) {
+
     this.setState({
       data: nextProps.dataTree,
       itemsList: this.buildItemsList(nextProps.dataTree)
     });
-    this.subLevelsClasses = {
+
+    this.subLevelsClass = {
       inactive: 'subelements subelements-disable',
       active: 'subelements'
     }
+
   }
 
-  handleChange = (data) => {}
+  activeElements = (item, status) => {
+    if (item.sublevels !== undefined) {
+      item
+        .sublevels
+        .map((element) => {
+          this.checkboxChildActives[element.id] = status;
+          this.activeElements(element, status);
+        });
+    }
+  }
+
+  handleChange = (event, item) => {
+
+    const status = event.target.checked;
+    const stateCheckbox = this.state.checkboxes;
+    stateCheckbox[item.id] = status;
+
+    this.activeElements(item, status);
+    const allCheck = this.state.checkboxes;
+
+    for (let i in this.checkboxChildActives) {
+      allCheck[i] = this.checkboxChildActives[i];
+    }
+    allCheck[item.id] = status;
+    this.setState({
+      checkboxes: allCheck,
+      itemsList: this.buildItemsList(this.state.data)
+    }, () => {
+      this
+        .props
+        .handleFilter(this.state.checkboxes);
+    })
+
+  }
 
   showTree = (data) => {
-    var elementos = this.state.elements;
-    elementos[data] = (elementos[data] === this.subLevelsClasses.active)
-      ? this.subLevelsClasses.inactive
-      : this.subLevelsClasses.active;
+    let newElements = this.state.elements;
+    newElements[data] = (newElements[data] === this.subLevelsClass.active)
+      ? this.subLevelsClass.inactive
+      : this.subLevelsClass.active;
 
     const context = this;
 
     this.setState({
-      elements: elementos,
+      elements: newElements,
       isLoaded: true
     }, () => {
       context.setState({
@@ -44,25 +82,40 @@ class CreateTree extends Component {
     });
   }
 
-  getCode = function () {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for (var i = 0; i < 5; i++) 
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    
-    return text;
-  }
-
   getIcon = (itemData, arr) => {
     if (arr === undefined) {
       return '';
-    } else if (itemData === this.subLevelsClasses.active) {
+    } else if (itemData === this.subLevelsClass.active) {
       return '-';
     } else {
       return '+';
     }
   }
+
+  empty = (obj) => {
+    let cont = 0;
+    for (let i in obj) {
+      cont++;
+    }
+    return cont === 0;
+  }
+
+  getCheckBox = (item) => {
+
+    const actual = this.state.checkboxes;
+    actual[item.id] = (this.state.checkboxes[item.id] === undefined)
+      ? false
+      : this.state.checkboxes[item.id];
+
+    this.setState({checkboxes: actual})
+    const itemsHtml = <Checkbox
+      checked={this.state.checkboxes[item.id]}
+      onChange={(event) => {
+      this.handleChange(event, item)
+    }}/>
+
+    return itemsHtml;
+  };
 
   buildItemsList = (data) => {
     if (data === undefined) {
@@ -73,22 +126,26 @@ class CreateTree extends Component {
 
       if (!this.state.isLoaded) {
         var objItem = this.state.elements;
-        objItem[i + '-cth'] = this.subLevelsClasses.inactive;
+        objItem[i + '-cth'] = this.subLevelsClass.inactive;
         this.setState({elements: objItem});
       }
 
       return (
         <div key={item.id + 'ctmh'}>
           <div className="item-tree" key={item.id + 'ctn'}>
+
             <div
               className="icon-deploy"
               onClick={() => {
               this.showTree(i + '-cth')
-            }}>{this.getIcon(this.state.elements[i + '-cth'], item.sublevels)}</div>
-            <Checkbox onChange={this.handleChange(item.id)}/>
+            }}>
+              {this.getIcon(this.state.elements[i + '-cth'], item.sublevels)}
+            </div>
+            {this.getCheckBox(item)}
             <span className="item-name-tree" key={item.id + 'ctm'}>
               {item.name}
             </span>
+
           </div>
           <div
             className={this.state.elements[i + '-cth']}
