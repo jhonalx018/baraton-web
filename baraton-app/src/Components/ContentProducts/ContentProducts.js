@@ -169,19 +169,19 @@ class ContentProducts extends Component {
 						let elements = this.state.products;
 						elements.sort((a, b) => {
 								if (context.state.fieldType == 'asc') {
-										if (a[context.state.fieldOrder] > b[context.state.fieldOrder]) {
+										if (this.parseToNumber(a[context.state.fieldOrder]) > this.parseToNumber(b[context.state.fieldOrder])) {
 												return 1;
 										}
-										if (a[context.state.fieldOrder] < b[context.state.fieldOrder]) {
+										if (this.parseToNumber(a[context.state.fieldOrder]) < this.parseToNumber(b[context.state.fieldOrder])) {
 												return -1;
 										}
 										return 0;
 								} else {
-										if (a[context.state.fieldOrder] < b[context.state.fieldOrder]) {
-												return 1;
-										}
-										if (a[context.state.fieldOrder] > b[context.state.fieldOrder]) {
+										if (this.parseToNumber(a[context.state.fieldOrder]) > this.parseToNumber(b[context.state.fieldOrder])) {
 												return -1;
+										}
+										if (this.parseToNumber(a[context.state.fieldOrder]) < this.parseToNumber(b[context.state.fieldOrder])) {
+												return 1;
 										}
 										return 0;
 								}
