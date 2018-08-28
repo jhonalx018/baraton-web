@@ -1,3 +1,4 @@
+
 h3.title-products {
     text-align: right;
     padding: 11px;
@@ -12,6 +13,13 @@ h3.title-products {
     padding: 10px;
 }
 
+.content-form-control > * {
+    margin: 10px;
+}
+
+.inputSearchBar {
+    margin-left: 10px;
+}
 .content-box {
     width: 100%;
     display: inline-block;
@@ -41,7 +49,7 @@ h3.title-products {
     padding-top: 5px;
 }
 
-.products-quantity {
+.products-label {
     font-weight: bold;
     text-align: right;
     text-transform: uppercase;
@@ -49,7 +57,24 @@ h3.title-products {
     font-size: 10px !important;
     text-shadow: 1px 1px #cacaca;
 }
-
+.search-bar {
+    position: relative;
+    display: inline-block;
+    float: left;
+    top: 0px;
+    margin: 10px;
+    position: relative;
+    top: -21px;
+    width: 100%;
+}
+.content-form-control > * {
+    margin: 10px !important;
+}
+input.inputSearchBar {
+}
+/*
+    MEDIA QUERYS
+*/
 @media (max-width: 900px){
     .content-external{
         width: calc(100% - 25px);
