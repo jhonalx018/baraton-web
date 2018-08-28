@@ -220,6 +220,10 @@ class ContentProducts extends Component {
 		}
 
 		parseToNumber = (numberString = 0) => {
+
+				if (Number.isInteger(numberString)) {
+						return numberString;
+				}
 				let arrayLetters = numberString.split('');
 
 				let parseArr = arrayLetters.filter(item => (item.indexOf(',') === -1 && (item.indexOf('$') === -1) && (item.indexOf('.') === -1)));
