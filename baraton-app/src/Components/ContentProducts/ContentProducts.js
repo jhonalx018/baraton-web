@@ -3,6 +3,10 @@ import '../../assets/ContentProducts/ContentProducts.css';
 import {connect} from 'react-redux';
 import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
 
 const SearchBar = props => (
 
@@ -30,6 +34,29 @@ const SearchBar = props => (
 								type="number"
 								className="number-text-field"
 								onChange={props.maxPrice}/>
+						<div
+								className="products-label"
+								style={{
+								'textAlign': 'left',
+								'cursor': 'pointer'
+						}}>Ordering</div>
+						<div className="InputOrdenring">
+								<FormControl>
+										<InputLabel htmlFor="demo-controlled-open-select">Field</InputLabel>
+										<Select value={props.fieldOrder} onChange={props.fieldOrderSet}>
+												<MenuItem value="price">Price</MenuItem>
+												<MenuItem value="quantity">Quantity</MenuItem>
+										</Select>
+								</FormControl>
+								<FormControl>
+										<InputLabel htmlFor="demo-controlled-open-select">Type</InputLabel>
+										<Select value={props.fieldType} onChange={props.orderType}>
+												<MenuItem value="asc">Asc</MenuItem>
+												<MenuItem value="desc">Desc</MenuItem>
+										</Select>
+								</FormControl>
+						</div>
+
 				</div>
 		</div>
 );
@@ -62,7 +89,9 @@ class ContentProducts extends Component {
 						valSearch: '',
 						orginalData: [],
 						products: [],
-						categoriesSelected: []
+						categoriesSelected: [],
+						fieldOrder: '',
+						fieldType: ''
 				}
 		}
 
@@ -133,6 +162,53 @@ class ContentProducts extends Component {
 
 		}
 
+		applyOrder = () => {
+				const context = this;
+
+				if (this.state.fieldType != '' && this.state.fieldOrder != '') {
+						let elements = this.state.products;
+						elements.sort((a, b) => {
+								if (context.state.fieldType == 'asc') {
+										if (a[context.state.fieldOrder] > b[context.state.fieldOrder]) {
+												return 1;
+										}
+										if (a[context.state.fieldOrder] < b[context.state.fieldOrder]) {
+												return -1;
+										}
+										return 0;
+								} else {
+										if (a[context.state.fieldOrder] < b[context.state.fieldOrder]) {
+												return 1;
+										}
+										if (a[context.state.fieldOrder] > b[context.state.fieldOrder]) {
+												return -1;
+										}
+										return 0;
+								}
+						});
+
+						this.setState({products: elements});
+				}
+		}
+
+		orderType = (event) => {
+
+				this.setState({
+						fieldType: event.target.value
+				}, () => {
+						this.applyOrder();
+				});
+
+		}
+
+		fieldOrderSet = (event) => {
+				this.setState({
+						fieldOrder: event.target.value
+				}, () => {
+						this.applyOrder();
+				});
+		}
+
 		maxPriceFunction = (event) => {
 				this.maxPrice = this.parseToNumber(event.target.value);
 				this.filterComplety();
@@ -165,7 +241,11 @@ class ContentProducts extends Component {
 										<SearchBar
 												eventKey={this.filterKey}
 												maxPrice={this.maxPriceFunction}
-												minPrice={this.minPriceFunction}/>
+												minPrice={this.minPriceFunction}
+												orderType={this.orderType}
+												fieldOrder={this.state.fieldOrder}
+												fieldType={this.state.fieldType}
+												fieldOrderSet={this.fieldOrderSet}/>
 										<ProduxBox data={this.state.products}/>
 								</div>
 						</div>

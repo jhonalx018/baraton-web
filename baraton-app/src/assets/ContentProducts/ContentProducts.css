@@ -72,6 +72,10 @@ h3.title-products {
 }
 input.inputSearchBar {
 }
+.InputOrdenring > * {
+    margin-right: 10px !important;
+    width: 150px !important;
+}
 /*
     MEDIA QUERYS
 */

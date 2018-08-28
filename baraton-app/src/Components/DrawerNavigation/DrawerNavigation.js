@@ -36,6 +36,9 @@ class DraweNavigation extends Component {
         }
       });
   }
+  componentDidMount = () => {
+    this.setState({open: false});
+  }
 
   render() {
     return (
@@ -60,7 +63,7 @@ class DraweNavigation extends Component {
             open: !this.state.open
           });
         }}>menu</i>
-        <span className="title-drawer">Categorias</span>
+        <span className="title-drawer">Categories</span>
         <CreateTree
           dataTree={this.state.categories}
           handleFilter={this.filterCateforie}></CreateTree>
