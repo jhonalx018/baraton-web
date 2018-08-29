@@ -41,7 +41,7 @@ class CreateTree extends Component {
   }
 
   handleChange = (event, item) => {
-
+    this.checkboxChildActives = {};
     const status = event.target.checked;
     const stateCheckbox = this.state.checkboxes;
     stateCheckbox[item.id] = status;

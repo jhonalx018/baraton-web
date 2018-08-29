@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { store } from './Store/Store';
 import BodyApp from './Components/BodyApp/BodyApp';
 import ProfileCar from './Components/ProfileCar/ProfileCar';
+import { TopBar } from './Components/TopBar/TopBar';
 
 class App extends Component {
   render() {
@@ -13,11 +14,14 @@ class App extends Component {
 
         <Provider store={store}>
           <BrowserRouter>
-            <Switch>
-              <Route path="/home" component={BodyApp} />
-              <Route path="/car" component={ProfileCar} />
-              <Route path="/" component={BodyApp} />
-            </Switch>
+            <div>
+              <TopBar />
+              <Switch>
+                <Route path="/home" component={BodyApp} />
+                <Route path="/car" component={ProfileCar} />
+                <Route path="/" component={BodyApp} />
+              </Switch>
+            </div>
           </BrowserRouter>
         </Provider>
       </div>
