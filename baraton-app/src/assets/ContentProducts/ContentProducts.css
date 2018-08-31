@@ -76,6 +76,19 @@ input.inputSearchBar {
     margin-right: 10px !important;
     width: 150px !important;
 }
+.content-icon-car {
+    display: inline-block;
+    float: right;
+    margin-top: 8px;
+}
+.content-icon-car > i {
+    font-size: 22px !important;
+    color: red !important;
+}
+.content-icon-car > .success-icon {
+    color: green !important;
+}
+
 /*
     MEDIA QUERYS
 */

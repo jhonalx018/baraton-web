@@ -68,6 +68,21 @@ const ProduxBox = (data) => {
 				.map((item, i) => (
 						<div className="content-external" key={'ctn-' + item.id}>
 								<div className="content-box" key={'etc-' + item.id}>
+										<div className="content-icon-car" key={'icon-content-' + item.id}>
+												{item.available == true && <i
+														className="material-icons success-icon"
+														key={'icon-' + item.id}
+														onClick={() => {
+														data.addCard(item)
+												}}>
+														add_shopping_cart
+												</i>
+}
+												{item.available == false && <i className="material-icons" key={'icon-' + item.id}>
+														error_outline
+												</i>
+}
+										</div>
 										<div className="title-box" key={item + '-name'}>{item.name}</div>
 										<div className="title-box element-table" key={item + '-price'}>{item.price}</div>
 										<div className="title-box element-table" key={item + '-quantity'}>quantity: {item.quantity}</div>
@@ -108,6 +123,7 @@ class ContentProducts extends Component {
 		}
 
 		componentWillReceiveProps = (nextProps) => {
+
 				const context = this;
 				nextProps
 						.products
@@ -235,6 +251,13 @@ class ContentProducts extends Component {
 				return parseInt(finalString);
 		}
 
+		addCard = (item) => {
+				this
+						.props
+						.saveItem(item);
+				//window.location.pathname = 'car';
+		}
+
 		render() {
 				return (
 						<div className="App">
@@ -250,7 +273,7 @@ class ContentProducts extends Component {
 												fieldOrder={this.state.fieldOrder}
 												fieldType={this.state.fieldType}
 												fieldOrderSet={this.fieldOrderSet}/>
-										<ProduxBox data={this.state.products}/>
+										<ProduxBox data={this.state.products} addCard={this.addCard}/>
 								</div>
 						</div>
 				);
@@ -262,6 +285,9 @@ const mapStateToProps = state => ({products: state.ProductsRx, categoriesSelecte
 const mapDispatchToProps = dispatch => ({
 		getData: async() => {
 				await dispatch({type: 'GET_DATA_PRODUCTS'});
+		},
+		saveItem: (dataPayload) => {
+				dispatch({type: 'SAVE_ITEM_CAR', payload: dataPayload});
 		}
 });
 

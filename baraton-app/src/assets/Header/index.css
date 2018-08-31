@@ -7,4 +7,41 @@
     text-align: right;
     width: 100%;
     font-size: 22px !important;
+    padding-bottom: 10px;
+}
+.content-top-bar{
+    position: relative;
+    top:5px;
+    display: inline-block;
+}
+
+.content-menu-top-bar{
+    float: left;
+    padding-top: 5px;
+}
+
+.content-number-item {
+    position: absolute;
+    right: 0;
+    width: 26px;
+    background: #f50057;
+    border-radius: 200px;
+    text-align: center;
+    text-shadow: 1px 1px red;
+    height: 26px;
+    border: 1px solid #e00150;
+    transition: 0.5s;
+}
+
+.content-car-items {
+    display: inline-block;
+    position: relative;
+}
+
+.active-animation{
+    width: 30px;
+    height: 30px;
+    font-size: 18px !important;
+    background: white;
+    color: #f50057;
 }
