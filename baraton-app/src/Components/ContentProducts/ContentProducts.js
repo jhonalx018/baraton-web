@@ -180,13 +180,13 @@ class ContentProducts extends Component {
 				let finalElements = elements;
 
 				if (statusAvailable == 'Avaliable') {
-						finalElements = finalElements.filter(item => item.available === true);
+						finalElements = finalElements.filter(item => item.available == true);
 				} else if (statusAvailable == 'Unavailable') {
-						finalElements = finalElements.filter(item => item.available === false);
+						finalElements = finalElements.filter(item => item.available == false);
 				}
 
 				if (this.minPrice > 0) {
-						finalElements = elements.filter(item => this.parseToNumber(item.price) >= this.minPrice);
+						finalElements = finalElements.filter(item => this.parseToNumber(item.price) >= this.minPrice);
 				}
 
 				if (this.maxPrice > 0) {
