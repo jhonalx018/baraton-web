@@ -18,6 +18,16 @@ const SearchBar = props => (
 						'padding': '0px 10px 10px',
 						'cursor': 'pointer'
 				}}>Filters</div>
+				<div className="content-check">
+						<FormControl>
+								<InputLabel htmlFor="demo-controlled-open-select">Available Filter</InputLabel>
+								<Select onChange={props.changeStatusFilter} value={props.availableFilter}>
+										<MenuItem value="none">None</MenuItem>
+										<MenuItem value="Avaliable">Avaliable</MenuItem>
+										<MenuItem value="Unavailable">Unavailable</MenuItem>
+								</Select>
+						</FormControl>
+				</div>
 				<Input
 						type="text"
 						onChange={props.eventKey}
@@ -106,7 +116,8 @@ class ContentProducts extends Component {
 						products: [],
 						categoriesSelected: [],
 						fieldOrder: '',
-						fieldType: ''
+						fieldType: '',
+						availableFilter: 'none'
 				}
 		}
 
@@ -164,8 +175,15 @@ class ContentProducts extends Component {
 		filterComplety = () => {
 
 				const products = this.state.orginalData;
+				const statusAvailable = this.state.availableFilter;
 				const elements = products.filter(item => (item.quantity.toString().toLowerCase().indexOf(this.state.valSearch.toLowerCase()) != -1 || item.name.toString().toLowerCase().indexOf(this.state.valSearch.toLowerCase())) != -1);
 				let finalElements = elements;
+
+				if (statusAvailable == 'Avaliable') {
+						finalElements = finalElements.filter(item => item.available === true);
+				} else if (statusAvailable == 'Unavailable') {
+						finalElements = finalElements.filter(item => item.available === false);
+				}
 
 				if (this.minPrice > 0) {
 						finalElements = elements.filter(item => this.parseToNumber(item.price) >= this.minPrice);
@@ -235,6 +253,14 @@ class ContentProducts extends Component {
 				this.filterComplety();
 		}
 
+		changeStatusFilter = (event) => {
+				this.setState({
+						availableFilter: event.target.value
+				}, () => {
+						this.filterComplety();
+				});
+		}
+
 		parseToNumber = (numberString = 0) => {
 
 				if (Number.isInteger(numberString)) {
@@ -272,7 +298,9 @@ class ContentProducts extends Component {
 												orderType={this.orderType}
 												fieldOrder={this.state.fieldOrder}
 												fieldType={this.state.fieldType}
-												fieldOrderSet={this.fieldOrderSet}/>
+												fieldOrderSet={this.fieldOrderSet}
+												availableFilter={this.state.availableFilter}
+												changeStatusFilter={this.changeStatusFilter}/>
 										<ProduxBox data={this.state.products} addCard={this.addCard}/>
 								</div>
 						</div>

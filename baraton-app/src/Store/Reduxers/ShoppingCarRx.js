@@ -4,6 +4,11 @@ const saveInCookie = (param) => {
     ? JSON.parse(localStorage.getItem('carShopping'))
     : [];
 
+  const elements = navigatorStorage.filter(item => item.id === param.id);
+  if (elements.length > 0) {
+    alert('Element alrady');
+    return navigatorStorage;
+  }
   const resultStorage = [
     ...navigatorStorage,
     param,
@@ -22,7 +27,10 @@ const ShoppingCarRx = (state = [], action) => {
       break;
     case 'CLEAR_DATA':
       state = {};
-      state.carShopping = [];
+      state = (action.payload === undefined)
+        ? []
+        : action.payload;
+
       return state;
       break;
     default:

@@ -9,7 +9,7 @@
     transition: 0.7s;
 }
 
-.material-icons:active{
+.material-icons:hover{
     background: #9b9b9b36;
     border-radius: 200px;
     opacity: 0.3s;

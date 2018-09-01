@@ -28,7 +28,9 @@ class Orders extends Component {
   getSubItems = (listItems) => {
     const lista = listItems.map((item) => {
       return <li>
-        <div>Item: {item.name}</div>
+        <div>
+          Item: {item.name}
+        </div>
         <div>Quantity: {item.carQuantity}</div>
         <div>total: $<NumberFormat
           decimalSeparator="."
@@ -133,6 +135,10 @@ class ProfileCar extends Component {
     if (parseInt(val) < 1) {
       return false;
     }
+
+    if (val > item.quantity) {
+      return false;
+    }
     let totals = 0;
     const {carShopping} = this.state;
     let result = carShopping.map((element) => {
@@ -150,6 +156,9 @@ class ProfileCar extends Component {
 
   buyNow = () => {
     const items = this.state.carShopping;
+    if (items.length === 0) {
+      return false;
+    }
     let storage = this.state.orders;
     const order = {
       elements: items,
@@ -163,6 +172,31 @@ class ProfileCar extends Component {
     this
       .props
       .cleanData();
+  }
+
+  calcPrice = (arr) => {
+    let price = 0;
+    arr.map((item) => {
+      price = price + item.total;
+    });
+    return price;
+  }
+
+  deleteItem = (eli) => {
+    const elements = this
+      .state
+      .carShopping
+      .filter(item => item.id !== eli.id);
+
+    this.setState({
+      total: this.calcPrice(elements),
+      carShopping: elements
+    }, () => {
+      localStorage.setItem('carShopping', JSON.stringify(elements));
+      this
+        .props
+        .cleanData(this.state.carShopping);
+    });
   }
 
   render() {
@@ -186,7 +220,14 @@ class ProfileCar extends Component {
             <div className="content-box">
               <div className="order-elements">
                 <div className="center-content">
-                  {item.name}
+                  <i
+                    className="material-icons delete-icon"
+                    onClick={() => {
+                    this.deleteItem(item)
+                  }}>
+                    delete_forever
+                  </i>
+                  <div className="item-name">{item.name}</div>
                 </div>
               </div>
               <div className="order-elements">
@@ -224,8 +265,8 @@ class ProfileCar extends Component {
 const mapStateToProps = state => ({shopping: state.ShoppingCarRx});
 
 const mapDispatchToProps = dispatch => ({
-  cleanData: (payload) => {
-    dispatch({type: 'CLEAR_DATA'})
+  cleanData: (dataPayload) => {
+    dispatch({type: 'CLEAR_DATA', payload: dataPayload})
   }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileCar)

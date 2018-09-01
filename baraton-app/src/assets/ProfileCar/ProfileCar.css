@@ -10,16 +10,18 @@ p {
 
 .content-box {
   text-align: center;
-}
-
-.content-box {
-  text-align: center;
   vertical-align: middle;
 }
 .center-content {
   line-height: 4;
 }
 
+.delete-icon {
+  position: relative;
+  float: left;
+  top: 6px;
+  color: #f544ad;
+}
 .order-elements {
   border-right: 1px dashed #f50057;
   width: 24%;
@@ -46,6 +48,11 @@ p {
 li {
   list-style: none;
   display: inline-block;
+  margin: 2px;
+  padding: 2px;
+  background: #e00150;
+    color: white;
+    font-weight: bold;
 }
 .content-buy {
   position: fixed;
@@ -85,7 +92,11 @@ i.material-icons.navigation-top {
       border-bottom: 1px dashed #f50057;
       padding: 10px;
   }
-
+  .item-name {
+    position: relative;
+    padding-right: 4rem;
+    top: 10px;
+}
   .content-profile {
     display: inline-block;
     width: 100%;
@@ -119,6 +130,10 @@ i.material-icons.navigation-top {
   width: 100%;
   display: inline-block;
   overflow: hidden;
+  margin-bottom: 10px;
+}
+.delete-icon{
+  top: 0px;
 }
 .titles-item {
   text-align: center;
@@ -137,10 +152,8 @@ ul > li:last-child {
   border: none;
 }
 
-
-
-
 }
+
 @media (max-width: 425px){
   .total-elements > * {
     margin-bottom: 10px;

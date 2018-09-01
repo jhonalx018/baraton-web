@@ -88,7 +88,19 @@ input.inputSearchBar {
 .content-icon-car > .success-icon {
     color: green !important;
 }
-
+.filter-check{
+    float: left;
+    top: 18px;
+    position: relative;
+    margin-left: 10px;
+}
+.content-check {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.content-check > * {
+    width: 169px;
+}
 /*
     MEDIA QUERYS
 */

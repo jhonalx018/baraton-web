@@ -36,8 +36,12 @@ class TopBar extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    this.setState({numCar: nextProps.shopping.length});
-    this.appyAnimation();
+    console.log(nextProps);
+    this.setState({
+      numCar: nextProps.shopping.length
+    }, () => {
+      this.appyAnimation();
+    });
   }
 
   componentDidMount = () => {
@@ -62,6 +66,7 @@ class TopBar extends Component {
 
   }
   getNumItems = () => {
+
     if (this.state.numCar > 0) {
       return <div
         className={this.state.classAnimation.ctn + ' ' + this.state.classAnimation.active}>{this.state.numCar}</div>
