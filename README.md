@@ -1,3 +1,10 @@
+#Details APP:
+
+  *Framework: ReactJs
+  *Storage: Local Storage, Redux
+  *Request: Axios
+  *Css: css3
+
 #App Baraton
 
 #Install
