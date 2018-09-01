@@ -1,6 +1,11 @@
+p {
+  background: white;
+  padding: 10px;
+}
 .content-profile {
   display: inline-block;
   width: calc(100% - 12px);
+  margin-bottom: 40px;
 }
 
 .content-box {
@@ -43,11 +48,10 @@ li {
   display: inline-block;
 }
 .content-buy {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   background: #ff8db5;
   color: white;
-  text-shadow: 1px 1px #966073;
   width: 100%;
   left: 0;
   transition: 1s;
@@ -65,7 +69,6 @@ i.material-icons.navigation-top {
   font-size: 16px !important;
     padding: 12px;
     color: #f50057;
-    font-weight: bold;
 }
 
 .content-items {
@@ -75,8 +78,76 @@ i.material-icons.navigation-top {
   color: black;
 }
 
+@media (max-width: 1100px){
+  .order-elements {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px dashed #f50057;
+      padding: 10px;
+  }
+
+  .content-profile {
+    display: inline-block;
+    width: 100%;
+}
+  input.number-formar {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    /* height: 10px; */
+  }
+  .center-content {
+    line-height: 2;
+  }
+  .total-elements {
+    width: 100%;
+    text-align: center;
+    display: inline-grid;
+    padding: 10px 0px 15px 0px;
+}
+
+.content-items-car {
+  width: 100%;
+  display: inline-flex;
+}
+.btn-buy {
+  top: 5px;
+  margin-right: 0px !important;
+}
+.content-box {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+}
+.titles-item {
+  text-align: center;
+}
+ul {
+  padding: 0;
+}
+
+li{
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 0.5px solid #ff8db5;
+}
+ul > li:last-child {
+  border: none;
+}
+
+
+
+
+}
 @media (max-width: 425px){
   .total-elements > * {
     margin-bottom: 10px;
   }
+}
+
+
+html{
+  overflow-x: hidden;
 }

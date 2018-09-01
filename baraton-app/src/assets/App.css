@@ -23,3 +23,8 @@
 header > * {
     min-height: 64px !important;
 }
+
+html{
+    overflow-x: hidden;
+}
+

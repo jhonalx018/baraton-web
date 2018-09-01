@@ -63,6 +63,7 @@ class Orders extends Component {
                 value={item.total}
                 className="number-formar"></NumberFormat>
             </div>
+            <p>Details</p>
             <ul>{this.getSubItems(item.elements)}</ul>
           </div>)}
         </div>
