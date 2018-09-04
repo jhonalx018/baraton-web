@@ -7,6 +7,8 @@ const Api = function (...params) {
   let paramsSend = {};
   const responType = 'JSON';
   const methods = 'GET';
+  const hostname = '/baraton-web';
+
   const STATUS = {
     SUCCESS: true,
     ERROR: false,
