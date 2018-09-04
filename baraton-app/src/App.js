@@ -9,6 +9,7 @@ import TopBar from './Components/TopBar/TopBar';
 
 class App extends Component {
   render() {
+    const hostname = process.env.REACT_APP_HOSTNAME;
     return (
       <div className="App">
 
@@ -17,9 +18,9 @@ class App extends Component {
             <div>
               <TopBar />
               <Switch>
-                <Route path="/home" component={BodyApp} />
-                <Route path="/car" component={ProfileCar} />
-                <Route path="/" component={BodyApp} />
+                <Route path={hostname + "/home" }component={BodyApp} />
+                <Route path={hostname + "/car" }component={ProfileCar} />
+                <Route path={hostname + "/" }component={BodyApp} />
               </Switch>
             </div>
           </BrowserRouter>
