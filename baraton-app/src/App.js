@@ -20,7 +20,7 @@ class App extends Component {
               <Switch>
                 <Route path={hostname + "/home" } component={BodyApp} />
                 <Route path={hostname + "/car" } component={ProfileCar} />
-                <Route path={hostname + "*" } component={BodyApp} />
+                <Route path={hostname + "/*" } component={BodyApp} />
               </Switch>
             </div>
           </BrowserRouter>
