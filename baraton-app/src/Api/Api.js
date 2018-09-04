@@ -6,9 +6,9 @@ const Api = function (...params) {
   const headers = {};
   let paramsSend = {};
   const responType = 'JSON';
-  const methods = 'GET';
-  const hostname = '/baraton-web';
-
+  const methods = 'get';
+  const hostname = process.env.REACT_APP_HOSTNAME;
+  
   const STATUS = {
     SUCCESS: true,
     ERROR: false,
@@ -30,7 +30,7 @@ const Api = function (...params) {
 
     await axios({
       method: methods,
-      url: actionName,
+      url: hostname+actionName,
       data: paramsSend,
       responseType: responType,
     }).then((data) => {
