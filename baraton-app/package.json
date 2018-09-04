@@ -1,6 +1,7 @@
 {
   "name": "baraton-app",
   "version": "0.1.0",
+  "homepage": "https://jhonalx018.github.io/baraton-web/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.5.1",
@@ -20,15 +21,18 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build/* ../ --force",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "gh-pages": "^1.2.0"
   }
 }
