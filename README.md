@@ -11,9 +11,13 @@
 
   #After clone the repositorie go to folder baraton-app
   #Run the command 
-    *npm install
+	#*npm install
 
 -Run 
-  *npm start
+	#*npm start
+
+-Build
+	#*npm run build
+    
 
 #The application is running in localhost:3000
