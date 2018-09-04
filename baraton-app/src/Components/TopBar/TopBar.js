@@ -100,11 +100,11 @@ class TopBar extends Component {
                   onClose={this.handleClose}>
                   <MenuItem
                     onClick={() => {
-                    this.handleClose('car')
+                    this.handleClose('/car')
                   }}>Shopping Car</MenuItem>
                   <MenuItem
                     onClick={() => {
-                    this.handleClose('home')
+                    this.handleClose('/home')
                   }}>List Items</MenuItem>
                 </Menu>
               </div>
