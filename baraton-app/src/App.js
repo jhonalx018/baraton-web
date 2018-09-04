@@ -18,9 +18,9 @@ class App extends Component {
             <div>
               <TopBar />
               <Switch>
-                <Route path={hostname + "/home" }component={BodyApp} />
-                <Route path={hostname + "/car" }component={ProfileCar} />
-                <Route path={hostname + "/" }component={BodyApp} />
+                <Route path={hostname + "/home" } component={BodyApp} />
+                <Route path={hostname + "/car" } component={ProfileCar} />
+                <Route path={hostname + "*" } component={BodyApp} />
               </Switch>
             </div>
           </BrowserRouter>
