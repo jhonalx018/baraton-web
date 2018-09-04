@@ -9,7 +9,7 @@ const Api = function (...params) {
   const methods = 'get';
   const hostname = process.env.REACT_APP_HOSTNAME;
   
-
+  console.log('hostname' , process.env);
   const STATUS = {
     SUCCESS: true,
     ERROR: false,
