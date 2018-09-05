@@ -13,6 +13,7 @@ class TopBar extends Component {
 
   constructor() {
     super();
+    this.hostname = process.env.REACT_APP_HOSTNAME;
     this.state = {
       anchorEl: null,
       numCar: (localStorage.getItem('carShopping'))
@@ -30,11 +31,11 @@ class TopBar extends Component {
   };
 
   handleClose = (paramLink) => {
-    const hostname = process.env.REACT_APP_HOSTNAME;
+    
     this.setState({anchorEl: null});
     if(typeof paramLink === 'string')
     {
-      window.location.pathname = hostname+paramLink;
+      window.location.pathname = this.hostname+paramLink;
     }
     
   };
@@ -112,7 +113,7 @@ class TopBar extends Component {
                   }}>List Items</MenuItem>
                 </Menu>
               </div>
-              <div className="content-car-items" onClick={()=>{ window.location.pathname = '/car'}}>
+              <div className="content-car-items" onClick={()=>{ window.location.pathname = this.hostname+'/car'}}>
                 {this.getNumItems()}
                 <i className="material-icons">
                   shopping_cart
