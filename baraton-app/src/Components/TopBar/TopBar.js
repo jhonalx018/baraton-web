@@ -32,7 +32,11 @@ class TopBar extends Component {
   handleClose = (paramLink) => {
     const hostname = process.env.REACT_APP_HOSTNAME;
     this.setState({anchorEl: null});
-    window.location.pathname = hostname+paramLink;
+    if(typeof paramLink === 'string')
+    {
+      window.location.pathname = hostname+paramLink;
+    }
+    
   };
 
   componentWillReceiveProps(nextProps) {
