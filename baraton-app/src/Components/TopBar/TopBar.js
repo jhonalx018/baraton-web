@@ -112,7 +112,7 @@ class TopBar extends Component {
                   }}>List Items</MenuItem>
                 </Menu>
               </div>
-              <div className="content-car-items">
+              <div className="content-car-items" onClick={()=>{ window.location.pathname = '/car'}}>
                 {this.getNumItems()}
                 <i className="material-icons">
                   shopping_cart
