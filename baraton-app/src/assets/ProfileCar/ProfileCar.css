@@ -21,7 +21,7 @@ p {
   float: left;
   top: 6px;
   color: #f544ad;
-  z-index: 2;
+  z-index: 0;
 }
 .order-elements {
   border-right: 1px dashed #f50057;

@@ -9,7 +9,7 @@ h3.title-products {
 
 .content-external {
     display: inline-block;
-    width: 23%;
+    width: calc(25% - 20px);
     padding: 10px;
 }
 

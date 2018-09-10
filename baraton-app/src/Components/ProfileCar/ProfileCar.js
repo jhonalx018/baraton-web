@@ -26,13 +26,15 @@ class Orders extends Component {
   }
 
   getSubItems = (listItems) => {
-    const lista = listItems.map((item) => {
-      return <li>
-        <div>
+    const lista = listItems.map((item, i) => {
+      return <li key={i+'box'}>
+        <div key={'as'+i}>
           Item: {item.name}
         </div>
-        <div>Quantity: {item.carQuantity}</div>
-        <div>total: $<NumberFormat
+        <div key={'qu'+i}>Quantity: {item.carQuantity}</div>
+        <div key={'tt'+i}>total: $
+        <NumberFormat
+          key={'nn'+i}
           decimalSeparator="."
           thousandSeparator=","
           value={item.total}
@@ -56,17 +58,19 @@ class Orders extends Component {
           expand_less
         </i>
         {this.state.openBar == true && <div className="content-order-list">
-          {elementsItems.map(item => <div className="content-items">
-            <div className="titles-item">{item.date}</div>
-            <div className="titles-item">$
+          {elementsItems.map((item, i) => 
+            <div key={i+'ctn'}className="content-items">
+            <div key={i+'dt'}className="titles-item">{item.date}</div>
+            <div key={i+'tt'}className="titles-item">$
               <NumberFormat
+                key={i+'nf'}
                 decimalSeparator="."
                 thousandSeparator=","
                 value={item.total}
                 className="number-formar"></NumberFormat>
             </div>
-            <p>Details</p>
-            <ul>{this.getSubItems(item.elements)}</ul>
+            <p key={i+'pp'}>Details</p>
+            <ul key={i+'ul'} >{this.getSubItems(item.elements)}</ul>
           </div>)}
         </div>
 }
@@ -101,6 +105,7 @@ class ProfileCar extends Component {
       if (item.carQuantity === undefined) {
         item['carQuantity'] = 1;
         item['total'] = this.parseToNumber(item.price);
+        item['base'] = this.parseToNumber(item.price);
         price = price + item['total'];
       }
 
@@ -124,33 +129,53 @@ class ProfileCar extends Component {
 
     return parseInt(finalString);
   }
+  recalc = (event, item) => {
+    let val = event.target.value;
+    val = parseInt(val);    
+    if(isNaN(val)){
+      this.calcTotale(1, item);
+    }
+  }
 
   changeQuantity = (event, item) => {
-    const val = event.target.value;
-
-    if (!Number.isInteger(parseInt(val))) {
+    let val = event.target.value;
+    let changeNumero = (val == '') ? true : false;
+    
+    val = parseInt(val);
+   
+    if (!Number.isInteger(val) && changeNumero == false) {
       return false;
     }
 
-    if (parseInt(val) < 1) {
+    if (val < 0 && changeNumero == false) {
       return false;
     }
-
+   
     if (val > item.quantity) {
       return false;
     }
-    let totals = 0;
-    const {carShopping} = this.state;
-    let result = carShopping.map((element) => {
-      if (item.id === element.id) {
-        let base = (element.total / element.carQuantity);
-        element.total = (base * val);
-        element.carQuantity = parseInt(val);
-      }
-      totals += element.total;
-      return element
-    });
+    
+    this.calcTotale(val, item);
+  }
 
+  calcTotale = (val, item) => {
+    let totals = 0;
+   
+    const newVal = (isNaN(val)) ? 0 : val;
+    const {carShopping} = this.state;
+
+    let result = carShopping.map((element) => {
+      
+      if (item.id === element.id) {
+        
+        element.total = (element.base * newVal);
+        element.carQuantity = val;
+      }
+      
+      totals += (isNaN(element.total)) ? 0 : parseInt(element.total);      
+      return element;
+    });
+    
     this.setState({carShopping: result, total: totals});
   }
 
@@ -240,7 +265,7 @@ class ProfileCar extends Component {
                   Total: $<NumberFormat
                     decimalSeparator="."
                     thousandSeparator=","
-                    value={item.total}
+                    value={(isNaN(item.total)) ? 0 : parseInt(item.total)}
                     className="number-formar"></NumberFormat>
                 </div>
               </div>
@@ -248,15 +273,16 @@ class ProfileCar extends Component {
                 <TextField
                   label="Quantity"
                   type="number"
-                  value={item.carQuantity}
+                  value={(isNaN(item.carQuantity)) ? '' : parseInt(item.carQuantity)}
                   className="number-text-field"
-                  onChange={(event) => this.changeQuantity(event, item)}/>
+                  onChange={(event) => this.changeQuantity(event, item)}
+                  onBlur={(event) => this.recalc(event, item)}/>
               </div>
             </div>
 
           </div>
         ))}
-        <Orders orders={this.state.orders}/>
+        <Orders orders={this.state.orders} key='orders'/>
       </div>
     );
   }
