@@ -161,6 +161,9 @@ ul > li:last-child {
   }
 }
 
+.item-name {
+  display: inline-block;
+}
 
 html{
   overflow-x: hidden;
