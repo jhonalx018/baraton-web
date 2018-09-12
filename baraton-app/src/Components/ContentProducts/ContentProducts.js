@@ -192,8 +192,9 @@ class ContentProducts extends Component {
 				if (this.maxPrice > 0) {
 						finalElements = finalElements.filter(item => this.maxPrice >= this.parseToNumber(item.price));
 				}
-				this.setState({products: finalElements});
-
+				this.setState({products: finalElements}, () => {
+					this.applyOrder();
+			});
 		}
 
 		applyOrder = () => {
